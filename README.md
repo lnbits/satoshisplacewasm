@@ -5,7 +5,7 @@ walls. It is inspired by `satoshis.place`: an LNbits user creates public walls,
 visitors choose pixels and colors, pay a Lightning invoice, and the paid invoice
 event commits the graffiti to the wall.
 
-![Public wall payment example](static/assets/example-pay-invoice.svg)
+<img width="1920" height="947" alt="image" src="https://github.com/user-attachments/assets/c7517f70-b143-4fff-89fb-3404bd8837d8" />
 
 ## Extension Details
 
