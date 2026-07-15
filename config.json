@@ -1,0 +1,119 @@
+{
+  "id": "satoshisplacewasm",
+  "name": "Satoshi's Place",
+  "short_description": "Create paid collaborative pixel walls.",
+  "version": "0.0.1",
+  "min_lnbits_version": "1.5.5",
+  "tags": ["art", "pixels", "wasm"],
+  "extension_type": "wasm",
+  "wasm": {
+    "module": "wasm/module.wasm",
+    "world": "satoshisplacewasm",
+    "exports": [
+      {"name": "list-place-wallets", "visibility": "authenticated"},
+      {"name": "create-place-wall", "visibility": "authenticated"},
+      {"name": "list-place-walls", "visibility": "authenticated"},
+      {"name": "delete-place-wall", "visibility": "authenticated"},
+      {"name": "get-public-place-wall", "visibility": "public"},
+      {"name": "create-place-paint-invoice", "visibility": "public"},
+      {"name": "record-place-payment", "visibility": "event"}
+    ]
+  },
+  "events": {
+    "onInvoicePaid": "record-place-payment"
+  },
+  "ui_routes": [
+    {
+      "path": "/satoshisplacewasm",
+      "entrypoint": "ui/admin.html",
+      "auth": "user"
+    },
+    {
+      "path": "/satoshisplacewasm/walls/{wall_id}",
+      "entrypoint": "ui/public.html",
+      "auth": "public",
+      "path_params": {
+        "wall_id": "wallId"
+      }
+    }
+  ],
+  "api_routes": [
+    {"method": "GET", "path": "/wallets", "export": "list-place-wallets", "auth": "user"},
+    {"method": "POST", "path": "/walls", "export": "create-place-wall", "auth": "user"},
+    {"method": "GET", "path": "/walls", "export": "list-place-walls", "auth": "user"},
+    {
+      "method": "DELETE",
+      "path": "/walls/{wall_id}",
+      "export": "delete-place-wall",
+      "auth": "user",
+      "path_params": {
+        "wall_id": "wallId"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/walls/{wall_id}",
+      "export": "get-public-place-wall",
+      "auth": "public",
+      "path_params": {
+        "wall_id": "wallId"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/walls/{wall_id}/paint",
+      "export": "create-place-paint-invoice",
+      "auth": "public",
+      "path_params": {
+        "wall_id": "wallId"
+      }
+    }
+  ],
+  "permissions": [
+    {
+      "id": "ext.storage.read",
+      "description": "Read walls and paid graffiti records."
+    },
+    {
+      "id": "ext.storage.read_public",
+      "description": "Read public wall state.",
+      "policies": [
+        {
+          "table_name": "place_walls",
+          "public_fields": [
+            "id",
+            "name",
+            "description",
+            "width",
+            "height",
+            "price_per_pixel",
+            "enabled",
+            "canvas_json",
+            "paint_count",
+            "paid_pixels",
+            "created_at",
+            "updated_at"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ext.storage.write",
+      "description": "Write wall state and paid graffiti records."
+    },
+    {
+      "id": "wallet.list",
+      "description": "Show the installing user's wallets for wall receipts."
+    },
+    {
+      "id": "wallet.create_invoice_public",
+      "description": "Create public graffiti invoices for configured walls.",
+      "policies": [
+        {
+          "table": "place_walls",
+          "wallet_field": "wallet_id"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Satoshi's Place</title>
+    <link rel="stylesheet" href="/ext-assets/satoshisplacewasm/_lnbits/bundle.min.css" />
+    <link rel="stylesheet" href="/ext-assets/satoshisplacewasm/_lnbits/material-icons.css" />
+    <link rel="stylesheet" href="/ext-assets/satoshisplacewasm/app.css" />
+  </head>
+  <body data-theme="bitcoin" class="body--dark">
+    <main class="place-shell q-pa-md">
+      <header class="place-header q-mb-md">
+        <div class="brand-row">
+          <div class="place-mark" aria-hidden="true">▦</div>
+          <div>
+            <h1 id="wall-title" class="text-h4 text-weight-bold q-my-none">Satoshi's Place</h1>
+            <p id="wall-subtitle" class="text-subtitle2 text-grey-5 q-my-none">Loading wall</p>
+          </div>
+        </div>
+        <button id="copy-wall-button" class="q-btn subtle-button" type="button">Copy Link</button>
+      </header>
+
+      <section class="public-layout">
+        <div class="canvas-panel panel q-card q-card--dark q-pa-md">
+          <div class="canvas-toolbar q-mb-sm">
+            <div>
+              <strong id="selection-count">0 pixels</strong>
+              <span id="selection-price" class="muted q-ml-sm">0 sats</span>
+            </div>
+            <div class="toolbar-actions">
+              <input id="color-input" type="color" value="#f7931a" aria-label="Paint color" />
+              <button id="clear-selection-button" class="q-btn subtle-button" type="button">Clear</button>
+              <button id="paint-button" class="q-btn bg-primary text-white" type="button">Pay to Paint</button>
+            </div>
+          </div>
+          <canvas id="wall-canvas" class="wall-canvas" width="640" height="640"></canvas>
+        </div>
+
+        <aside class="side-panel panel q-card q-card--dark q-pa-md">
+          <h2 class="text-h6 text-weight-bold q-my-none q-mb-md">Wall</h2>
+          <div class="stats">
+            <div class="stat-item">
+              <span class="text-caption text-grey-5">Size</span>
+              <strong id="wall-size">-</strong>
+            </div>
+            <div class="stat-item">
+              <span class="text-caption text-grey-5">Price</span>
+              <strong id="wall-price">-</strong>
+            </div>
+            <div class="stat-item">
+              <span class="text-caption text-grey-5">Painted</span>
+              <strong id="wall-painted">-</strong>
+            </div>
+          </div>
+          <p id="wall-description" class="muted q-mt-md"></p>
+        </aside>
+      </section>
+
+      <div id="invoice-dialog" class="invoice-dialog" role="dialog" aria-modal="true" hidden>
+        <button class="invoice-dialog-backdrop" type="button" aria-label="Close invoice" data-close-invoice></button>
+        <div class="invoice-dialog-card panel q-card q-card--dark q-pa-md">
+          <div class="row items-center justify-between q-mb-md">
+            <h2 class="text-h6 text-weight-bold q-my-none">Pay Invoice</h2>
+            <button class="q-btn subtle-button" type="button" data-close-invoice>Close</button>
+          </div>
+          <div id="invoice-qrcode" class="invoice-qrcode"></div>
+          <p id="invoice-status" class="invoice-status muted">Waiting for payment</p>
+          <button id="copy-invoice-button" class="q-btn subtle-button" type="button">Copy Invoice</button>
+        </div>
+      </div>
+    </main>
+    <script src="/ext-assets/satoshisplacewasm/_lnbits/vue.global.prod.js"></script>
+    <script src="/ext-assets/satoshisplacewasm/_lnbits/qrcode.vue.browser.js"></script>
+    <script src="/ext-assets/satoshisplacewasm/lnbits-extension-sdk.js"></script>
+    <script src="/ext-assets/satoshisplacewasm/public.js"></script>
+  </body>
+</html>

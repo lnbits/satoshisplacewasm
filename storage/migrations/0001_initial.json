@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "operations": [
+    {
+      "op": "create_table",
+      "table": "place_walls",
+      "fields": [
+        {"name": "id", "type": "string"},
+        {"name": "name", "type": "string"},
+        {"name": "description", "type": "string"},
+        {"name": "wallet_id", "type": "string"},
+        {"name": "wallet_name", "type": "string"},
+        {"name": "width", "type": "integer"},
+        {"name": "height", "type": "integer"},
+        {"name": "price_per_pixel", "type": "integer"},
+        {"name": "enabled", "type": "boolean"},
+        {"name": "canvas_json", "type": "string"},
+        {"name": "paint_count", "type": "integer"},
+        {"name": "paid_pixels", "type": "integer"},
+        {"name": "created_at", "type": "datetime"},
+        {"name": "updated_at", "type": "datetime"}
+      ]
+    },
+    {
+      "op": "create_table",
+      "table": "place_payments",
+      "fields": [
+        {"name": "id", "type": "string"},
+        {"name": "wall_id", "type": "string"},
+        {"name": "pixel_count", "type": "integer"},
+        {"name": "amount", "type": "integer"},
+        {"name": "patch_json", "type": "string"},
+        {"name": "status", "type": "string"},
+        {"name": "created_at", "type": "datetime"},
+        {"name": "paid_at", "type": "datetime", "nullable": true}
+      ]
+    },
+    {"op": "create_index", "table": "place_walls", "name": "place_walls_by_created_at", "field": "created_at"},
+    {"op": "create_index", "table": "place_payments", "name": "place_payments_by_wall", "field": "wall_id"}
+  ]
+}

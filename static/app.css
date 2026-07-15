@@ -1,0 +1,202 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+body {
+  background: #111318;
+  color: white;
+  letter-spacing: 0;
+}
+
+[v-cloak],
+[hidden] {
+  display: none !important;
+}
+
+.place-shell {
+  margin: 0 auto;
+  max-width: 1180px;
+}
+
+.place-header,
+.brand-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-row {
+  justify-content: flex-start;
+}
+
+.place-mark {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  background: #20242c;
+  color: #f7d365;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.panel {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #181b22;
+}
+
+.public-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(280px, 360px);
+  gap: 16px;
+  align-items: start;
+}
+
+.canvas-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.wall-canvas {
+  display: block;
+  width: min(100%, 720px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  background: #101318;
+  image-rendering: pixelated;
+  touch-action: none;
+  user-select: none;
+}
+
+.stats {
+  display: grid;
+  gap: 8px;
+}
+
+.stat-item {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button.q-btn {
+  min-height: 40px;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
+button.q-btn:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.subtle-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+input[type='color'] {
+  width: 44px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px;
+}
+
+.muted {
+  color: #bdbdbd;
+}
+
+.invoice-dialog {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.invoice-dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.invoice-dialog-card {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 380px);
+}
+
+.invoice-qrcode {
+  display: grid;
+  min-height: 280px;
+  place-items: center;
+  border-radius: 4px;
+  background: white;
+  padding: 10px;
+}
+
+.invoice-qrcode svg {
+  display: block;
+  width: min(100%, 260px);
+  height: auto;
+}
+
+.invoice-status {
+  min-height: 24px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .public-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .place-header,
+  .canvas-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .toolbar-actions {
+    flex-wrap: wrap;
+  }
+}
