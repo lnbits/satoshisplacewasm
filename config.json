@@ -2,7 +2,7 @@
   "id": "satoshisplacewasm",
   "name": "Satoshi's Place",
   "short_description": "Create paid collaborative pixel walls.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "min_lnbits_version": "1.5.5",
   "tile": "/satoshisplacewasm/static/assets/icon.png",
   "tags": ["art", "pixels", "wasm"],
