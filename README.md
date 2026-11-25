@@ -88,7 +88,8 @@ IDs, or owner-scoped metadata.
 ## Build
 
 ```bash
-cd lnbits/extensions/satoshisplacewasm/dev
+rustup target add wasm32-wasip2
+cd dev
 npm run build:wasm
 ```
 
@@ -104,21 +105,13 @@ browser may need a hard refresh to pick up changed assets. Backend changes in
 
 ## Development Checks
 
-Useful local checks:
+Run from the extension repository root.
 
 ```bash
-node --check lnbits/extensions/satoshisplacewasm/dev/src/index.js
-node --check lnbits/extensions/satoshisplacewasm/static/admin.js
-node --check lnbits/extensions/satoshisplacewasm/static/public.js
-node --check lnbits/extensions/satoshisplacewasm/static/lnbits-extension-sdk.js
-node --check lnbits/extensions/satoshisplacewasm/dev/dist/index.bundle.js
-od -An -tx1 -N4 lnbits/extensions/satoshisplacewasm/wasm/module.wasm
-```
-
-The WASM header check should print:
-
-```text
-00 61 73 6d
+npm --prefix dev run check
+node --check static/admin.js
+node --check static/public.js
+node --check static/lnbits-extension-sdk.js
 ```
 
 ## Runtime Notes
